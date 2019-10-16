@@ -16,12 +16,24 @@ class UsersController extends Controller
         $regions = Region::all();
         $prefs = Pref::all();
         $totalUsers = User::otherGenderOfLoginUser()->get();
-        return view('users.index', compact('users', 'totalUsers', 'regions', 'prefs'));
+        return view('users.index', compact('users',
+            'totalUsers',
+            'regions',
+            'prefs'
+        ));
     }
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $login_user = auth()->user();
+        if ($login_user->points === 0){
+            session()->flash('danger', 'ポイントがありません');
+            return redirect()->route('users.index');
+        }
+        if ($login_user->points > 0) {
+            $login_user->decrement('points');
+        }
+        return view('users.show', compact('user', 'login_user'));
     }
 
     public function edit(User $user)

@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card">
+
             <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
                 <div class="col-md-6 px-0">
                     <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
@@ -11,6 +12,7 @@
                     <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
                 </div>
             </div>
+            @include('layouts.message')
             <div class="container">
                 <div class="row justify-content-center">
                     <p class="text-center">{{ $users->links() }}</p>
@@ -66,7 +68,7 @@
                                     class="far fa-thumbs-up mr-2 ml-2" style="color: pink"></i>{{ $user->likes_count }}
                             </p>
                             <h2 class="text-center">{{ $user->account_name }}</h2>
-                            <p class="text-center">{{ $user->age }}歳</p>
+                            <p class="text-center">{{ $user->age }}</p>
                             <p class="text-center">{{ $user->pref->region->name }}</p>
                             <p class="text-center">{{ $user->pref->name }}</p>
                         </div>
