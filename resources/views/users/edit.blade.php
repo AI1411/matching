@@ -27,9 +27,20 @@
                                     <select name="age" id="">
                                         @foreach(config('const.ages') as $key => $age)
                                             <option value="{{ $key }}"
-                                                    name="age">{{ config('const.gender')[$age] }}</option>
+                                                    name="age">{{ config('const.ages')[$key]}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">性別: </label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="0">
+                                        <label class="form-check-label" for="inlineRadio1">男性</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="1">
+                                        <label class="form-check-label" for="inlineRadio2">女性</label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="">都道府県: </label><br>

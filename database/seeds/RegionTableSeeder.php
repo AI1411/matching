@@ -12,55 +12,50 @@ class RegionTableSeeder extends Seeder
     public function run()
     {
         \DB::table('regions')->delete();
-        \DB::table('regions')->insert(array (
+        \DB::table('regions')->insert(array(
             0 =>
-                array (
+                array(
                     'id' => 1,
                     'name' => '北海道・東北',
                     'slug' => 'tohoku',
                 ),
             1 =>
-                array (
+                array(
                     'id' => 2,
                     'name' => '関東',
                     'slug' => 'kanto',
                 ),
             2 =>
-                array (
+                array(
                     'id' => 3,
                     'name' => '東海',
                     'slug' => 'tokai',
                 ),
             3 =>
-                array (
+                array(
                     'id' => 4,
                     'name' => '関西',
                     'slug' => 'kansai',
                 ),
             4 =>
-                array (
+                array(
                     'id' => 5,
                     'name' => '甲信越・北陸',
                     'slug' => 'koushinetsu',
                 ),
             5 =>
-                array (
+                array(
                     'id' => 6,
                     'name' => '中国・四国',
                     'slug' => 'chushikoku',
                 ),
             6 =>
-                array (
+                array(
                     'id' => 7,
                     'name' => '九州・沖縄',
                     'slug' => 'kyushu',
                 ),
-            7 =>
-                array(
-                    'id' => 8,
-                    'name' => '地域で絞り込む',
-                    'slug' => null,
-                ),
+
         ));
     }
 }

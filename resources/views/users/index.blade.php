@@ -25,25 +25,25 @@
                 <div class="row justify-content-center">
                     <form action="" onchange="this.form.submit()" method="get">
                         <p class="text-center mt-3 mr-2 hidden-sm">
-                            <select name="" id="">
-                                @foreach($regions as $key => $region)
-                                    <option value="{{ $key }}">{{ $region->name }}</option>
+                            <select name="searchRegion" id="" onchange="this.form.submit()">
+                                @foreach(config('const.region') as $key => $region)
+                                    <option value="{{ $key }}">{{ $region }}</option>
                                 @endforeach
                             </select>
                         </p>
                     </form>
-                    <form action="" onchange="this.form.submit()" method="get">
+                    <form action="" method="get">
                         <p class="text-center mt-3 mr-2">
-                            <select name="" id="">
-                                @foreach($prefs as $key => $pref)
-                                    <option value="{{ $key }}">{{ $pref->name }}</option>
+                            <select name="searchPref" id="" onchange="this.form.submit()">
+                                @foreach(config('const.pref') as $key => $pref)
+                                    <option value="{{ $key }}">{{ $pref }}</option>
                                 @endforeach
                             </select>
                         </p>
                     </form>
                     <form action="">
                         <p class="text-center mt-3">
-                            <select name="" id="">
+                            <select name="searchAge" id="" onchange="this.form.submit()">
                                 @foreach(config('const.ages') as $key => $age)
                                     <option value="{{ $key }}">{{ $age }}</option>
                                 @endforeach
@@ -68,7 +68,7 @@
                                     class="far fa-thumbs-up mr-2 ml-2" style="color: pink"></i>{{ $user->likes_count }}
                             </p>
                             <h2 class="text-center">{{ $user->account_name }}</h2>
-                            <p class="text-center">{{ $user->age }}</p>
+                            <p class="text-center">{{ config('const.ages')[$user->age] }}</p>
                             <p class="text-center">{{ $user->pref->region->name }}</p>
                             <p class="text-center">{{ $user->pref->name }}</p>
                         </div>

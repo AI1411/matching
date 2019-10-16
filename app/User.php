@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\Console\Input\Input;
 
 class User extends Authenticatable
 {
@@ -51,6 +53,7 @@ class User extends Authenticatable
                     'account_name' => $params['account_name'],
                     'age' => $params['age'],
                     'pref_id' => $params['pref_id'],
+                    'gender' => $params['gender'],
                     'introduce' => $params['introduce'],
                     'hobby_1' => $params['hobby_1'],
                     'hobby_2' => $params['hobby_2'],
@@ -63,6 +66,7 @@ class User extends Authenticatable
                 ->update([
                     'account_name' => $params['account_name'],
                     'age' => $params['age'],
+                    'gender' => $params['gender'],
                     'pref_id' => $params['pref_id'],
                     'introduce' => $params['introduce'],
                     'hobby_1' => $params['hobby_1'],
@@ -76,9 +80,28 @@ class User extends Authenticatable
     public function scopeOtherGenderOfLoginUser($query)
     {
         if (auth()->user()->gender === 0){
-            return $query->where('gender', '1');
+            return $query->where('gender', 1);
         }else{
             return $query->where('gender', 0);
         }
+    }
+
+    public function scopeSearchOfPref($query)
+    {
+        $searchOfPref = Request::input('searchPref');
+        if ($searchOfPref){
+            return $query->where('pref_id', $searchOfPref);
+        }
+        return $query;
+    }
+
+    public function scopeSearchOfAge($query)
+    {
+        $searchOfAge = Request::input('searchAge');
+
+        if ($searchOfAge) {
+            return $query->where('age', $searchOfAge);
+        }
+        return $query;
     }
 }

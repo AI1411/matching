@@ -12,10 +12,10 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->otherGenderOfLoginUser()->simplePaginate(99);
+        $users = User::otherGenderOfLoginUser()->searchOfPref()->searchOfAge()->simplePaginate(99);
         $regions = Region::all();
         $prefs = Pref::all();
-        $totalUsers = User::otherGenderOfLoginUser()->get();
+        $totalUsers = User::otherGenderOfLoginUser()->searchOfPref()->searchOfAge()->get();
         return view('users.index', compact('users',
             'totalUsers',
             'regions',
@@ -48,6 +48,7 @@ class UsersController extends Controller
             'account_name',
             'image',
             'age',
+            'gender',
             'pref_id',
             'introduce',
             'hobby_1',
@@ -58,6 +59,7 @@ class UsersController extends Controller
         $user->name = $request->input('name');
         $user->account_name = $request->input('account_name');
         $user->age = $request->input('age');
+        $user->gender = $request->input('gender');
         $user->pref_id = $request->input('pref_id');
         $user->introduce = $request->input('introduce');
         $user->hobby_1 = $request->input('hobby_1');
@@ -65,7 +67,6 @@ class UsersController extends Controller
         $user->hobby_3 = $request->input('hobby_3');
 
         $user->updateProfile($data);
-        dump($request);
 
         session()->flash('success', 'プロフィールが更新されました。');
 

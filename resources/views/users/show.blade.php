@@ -23,7 +23,7 @@
                                 </li>
                                 <li class="list-group-item">名前：　{{ $user->account_name }}</li>
                                 <li class="list-group-item">性別：　{{ config('const.gender')[$user->gender] }}</li>
-                                <li class="list-group-item">年齢：　{{ $user->age }}</li>
+                                <li class="list-group-item">年齢：　{{ config('const.ages')[$user->age] }}</li>
                                 <li class="list-group-item">地域：　{{ $user->pref->region->name }}</li>
                                 <li class="list-group-item">都道府県：　{{ $user->pref->name }}</li>
                                 <li class="list-group-item">自己紹介：　{{ $user->introduce }}</li>
