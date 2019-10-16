@@ -56,9 +56,9 @@ class User extends Authenticatable
                     'pref_id' => $params['pref_id'],
                     'gender' => $params['gender'],
                     'introduce' => $params['introduce'],
-                    'hobby_1' => $params['hobby_1'],
-                    'hobby_2' => $params['hobby_2'],
-                    'hobby_3' => $params['hobby_3'],
+                    'hobby_1' => $params['hobby'][0],
+                    'hobby_2' => $params['hobby'][1],
+                    'hobby_3' => $params['hobby'][2],
 
                     'image' => basename($file_name),
                 ]);
@@ -70,9 +70,9 @@ class User extends Authenticatable
                     'gender' => $params['gender'],
                     'pref_id' => $params['pref_id'],
                     'introduce' => $params['introduce'],
-                    'hobby_1' => $params['hobby_1'],
-                    'hobby_2' => $params['hobby_2'],
-                    'hobby_3' => $params['hobby_3'],
+                    'hobby_1' => $params['hobby'][0],
+                    'hobby_2' => $params['hobby'][1],
+                    'hobby_3' => $params['hobby'][2],
                 ]);
         }
         return;

@@ -34,11 +34,13 @@
                                 <div class="form-group">
                                     <label for="gender">性別: </label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="0">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                                               value="0">
                                         <label class="form-check-label" for="inlineRadio1">男性</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="1">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                                               value="1">
                                         <label class="form-check-label" for="inlineRadio2">女性</label>
                                     </div>
                                 </div>
@@ -56,16 +58,15 @@
                                               rows="5">{{ $user->introduce }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">趣味1: </label>
-                                    <input type="text" class="form-control" name="hobby_1" value="{{ $user->hobby_1 }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">趣味2: </label>
-                                    <input type="text" class="form-control" name="hobby_2" value="{{ $user->hobby_2 }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">趣味3: </label>
-                                    <input type="text" class="form-control" name="hobby_3" value="{{ $user->hobby_3 }}">
+                                    <label for="">趣味: </label>
+                                    <ul>
+                                        @foreach(config('const.hobby') as $key => $hobby)
+                                            <input class="form-check-input" type="checkbox" name="hobby[]" value="{{ $key }}" id="defaultCheck1">
+                                            <li class="form-check-label">
+                                                {{ $hobby }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                                 <button class="btn btn-primary text-center" type="submit">更新</button>
                             </div>

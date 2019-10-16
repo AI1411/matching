@@ -61,9 +61,7 @@ class UsersController extends Controller
             'gender',
             'pref_id',
             'introduce',
-            'hobby_1',
-            'hobby_2',
-            'hobby_3',
+            'hobby'
         ]);
 
         $user->name = $request->input('name');
@@ -72,9 +70,9 @@ class UsersController extends Controller
         $user->gender = $request->input('gender');
         $user->pref_id = $request->input('pref_id');
         $user->introduce = $request->input('introduce');
-        $user->hobby_1 = $request->input('hobby_1');
-        $user->hobby_2 = $request->input('hobby_2');
-        $user->hobby_3 = $request->input('hobby_3');
+        $user->hobby_1 = $request->merge(['hobby_1' => $data['hobby'][0]]);
+        $user->hobby_2 = $request->merge(['hobby_2' => $data['hobby'][1]]);
+        $user->hobby_3 = $request->merge(['hobby_3' => $data['hobby'][2]]);
 
         $user->updateProfile($data);
 

@@ -30,9 +30,9 @@
                                 <li class="list-group-item">地域：　{{ $user->pref->region->name }}</li>
                                 <li class="list-group-item">都道府県：　{{ $user->pref->name }}</li>
                                 <li class="list-group-item">自己紹介：　{{ $user->introduce }}</li>
-                                <li class="list-group-item">趣味１：　{{ $user->hobby_1 }}</li>
-                                <li class="list-group-item">趣味２：　{{ $user->hobby_2 }}</li>
-                                <li class="list-group-item">趣味３：　{{ $user->hobby_3 }}</li>
+                                <li class="list-group-item">趣味１：　{{ config('const.hobby')[$user->hobby_1] }}</li>
+                                <li class="list-group-item">趣味２：　{{ config('const.hobby')[$user->hobby_2] }}</li>
+                                <li class="list-group-item">趣味３：　{{ config('const.hobby')[$user->hobby_3] }}</li>
                                 <a href="{{ route('users.index') }}" class="btn btn-primary">一覧へ戻る</a>
                             </ul>
                         </div>
