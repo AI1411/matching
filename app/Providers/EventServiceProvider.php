@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\Logined' => [
+            // 最終ログインを記録するリスナー
+            'App\Listeners\LastLoginListener',
+        ],
     ];
 
     /**
