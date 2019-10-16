@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <div class="card">
-
             <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
                 <div class="col-md-6 px-0">
                     <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
@@ -23,6 +22,9 @@
                     {{ $totalUsers->count() }}人のユーザーがいます
                 </p>
                 <div class="row justify-content-center">
+                    <p class="text-center mt-3 mr-2 hidden-sm">
+                        <a href="{{ route('users.index') }}">条件をリセットする</a>
+                    </p>
                     <form action="" onchange="this.form.submit()" method="get">
                         <p class="text-center mt-3 mr-2 hidden-sm">
                             <select name="searchRegion" id="" onchange="this.form.submit()">
@@ -74,9 +76,7 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
-
         </div>
     </div>
     <div class="container">

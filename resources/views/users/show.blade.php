@@ -16,7 +16,10 @@
                             @endif
                         </div>
                         <div class="card-body">
+                            <a href=""><i class="fas fa-heart"></i></a>{{ $user->favorites_count }}
+                            <a href=""><i class="far fa-thumbs-up ml-2"></i></a>{{ $user->likes_count }}　
                             <ul class="list-group list-group-flush">
+
                                 <li class="list-group-item text-center">
                                     <img src="/storage/profile_image/{{ $user->image }}" alt="" height="100%"
                                          width="70%">
@@ -30,10 +33,7 @@
                                 <li class="list-group-item">趣味１：　{{ $user->hobby_1 }}</li>
                                 <li class="list-group-item">趣味２：　{{ $user->hobby_2 }}</li>
                                 <li class="list-group-item">趣味３：　{{ $user->hobby_3 }}</li>
-                                <li class="list-group-item"><i class="fas fa-heart"></i>：　{{ $user->favorites_count }}
-                                </li>
-                                <li class="list-group-item"><i class="far fa-thumbs-up"></i>：　{{ $user->likes_count }}
-                                </li>
+                                <a href="{{ route('users.index') }}" class="btn btn-primary">一覧へ戻る</a>
                             </ul>
                         </div>
                     </div>

@@ -12,10 +12,18 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::otherGenderOfLoginUser()->searchOfPref()->searchOfAge()->simplePaginate(99);
+        $users = User::otherGenderOfLoginUser()
+            ->searchOfPref()
+            ->searchOfAge()
+//            ->searchOfRegion()
+            ->simplePaginate(99);
         $regions = Region::all();
         $prefs = Pref::all();
-        $totalUsers = User::otherGenderOfLoginUser()->searchOfPref()->searchOfAge()->get();
+        $totalUsers = User::otherGenderOfLoginUser()
+            ->searchOfPref()
+            ->searchOfAge()
+//            ->searchOfRegion()
+            ->get();
         return view('users.index', compact('users',
             'totalUsers',
             'regions',

@@ -79,9 +79,9 @@ class User extends Authenticatable
 
     public function scopeOtherGenderOfLoginUser($query)
     {
-        if (auth()->user()->gender === 0){
+        if (auth()->user()->gender === 0) {
             return $query->where('gender', 1);
-        }else{
+        } else {
             return $query->where('gender', 0);
         }
     }
@@ -89,7 +89,7 @@ class User extends Authenticatable
     public function scopeSearchOfPref($query)
     {
         $searchOfPref = Request::input('searchPref');
-        if ($searchOfPref){
+        if ($searchOfPref) {
             return $query->where('pref_id', $searchOfPref);
         }
         return $query;
@@ -104,4 +104,14 @@ class User extends Authenticatable
         }
         return $query;
     }
+
+//    public function scopeSearchOfRegion($query)
+//    {
+//        $searchOfRegion = Request::input('searchRegion');
+//        if ($searchOfRegion){
+//            return $query->where('id', )->where('region_id', $searchOfRegion);
+//        }
+//        return $query;
+//    }
+
 }
