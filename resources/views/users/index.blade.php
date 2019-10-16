@@ -52,6 +52,15 @@
                             </select>
                         </p>
                     </form>
+                    <form action="" method="get">
+                        <p class="text-center mt-3 mr-2">
+                            <select name="sortByLoginAtOrLatest" id="" onchange="this.form.submit()">
+                                <option value="0">お選びください</option>
+                                <option value="1">ログイン時間順</option>
+                                <option value="2">アカウント作成順</option>
+                            </select>
+                        </p>
+                    </form>
                 </div>
             </div>
             <div class="row justify-content-center">

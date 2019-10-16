@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Request;
 use Symfony\Component\Console\Input\Input;
+use function Composer\Autoload\includeFile;
 
 class User extends Authenticatable
 {
@@ -105,13 +106,15 @@ class User extends Authenticatable
         return $query;
     }
 
-//    public function scopeSearchOfRegion($query)
-//    {
-//        $searchOfRegion = Request::input('searchRegion');
-//        if ($searchOfRegion){
-//            return $query->where('id', )->where('region_id', $searchOfRegion);
-//        }
-//        return $query;
-//    }
+    public function scopeSortByLoginAtOrLatest($query)
+    {
+        $keyword = Request::input('sortByLoginAtOrLatest');
 
+        if ($keyword == 1){
+            return $query->orderBy('last_login_at', 'desc');
+        }elseif ($keyword == 2){
+            return $query->latest();
+        }
+        return $query;
+    }
 }

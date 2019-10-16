@@ -15,6 +15,7 @@ class UsersController extends Controller
         $users = User::otherGenderOfLoginUser()
             ->searchOfPref()
             ->searchOfAge()
+            ->sortByLoginAtOrLatest()
 //            ->searchOfRegion()
             ->simplePaginate(99);
         $regions = Region::all();
@@ -22,6 +23,7 @@ class UsersController extends Controller
         $totalUsers = User::otherGenderOfLoginUser()
             ->searchOfPref()
             ->searchOfAge()
+            ->sortByLoginAtOrLatest()
 //            ->searchOfRegion()
             ->get();
         return view('users.index', compact('users',
