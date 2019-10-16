@@ -11,6 +11,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $( '.contents' ).hide();
+            $('.more').on( 'click' ,function(){
+                $( '.contents' ).fadeIn();
+                $( '.more' ).hide();
+            });
+        });
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
