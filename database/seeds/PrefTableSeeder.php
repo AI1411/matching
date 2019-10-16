@@ -340,6 +340,13 @@ class PrefTableSeeder extends Seeder
                     'region_id' => 7,
                     'slug' => 'okinawa',
                 ),
+            47 =>
+            array(
+                'id' => 48,
+                'name' => '都道府県で絞り込む',
+                'region_id' => null,
+                'slug' => null
+            )
         ));
     }
 }

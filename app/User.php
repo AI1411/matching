@@ -41,4 +41,44 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Pref::class);
     }
+
+    public function updateProfile($params)
+    {
+        if (isset($params['image'])) {
+            $file_name = $params['image']->store('public/profile_image/');
+            $this::where('id', $this->id)
+                ->update([
+                    'account_name' => $params['account_name'],
+                    'age' => $params['age'],
+                    'pref_id' => $params['pref_id'],
+                    'introduce' => $params['introduce'],
+                    'hobby_1' => $params['hobby_1'],
+                    'hobby_2' => $params['hobby_2'],
+                    'hobby_3' => $params['hobby_3'],
+
+                    'image' => basename($file_name),
+                ]);
+        } else {
+            $this::where('id', $this->id)
+                ->update([
+                    'account_name' => $params['account_name'],
+                    'age' => $params['age'],
+                    'pref_id' => $params['pref_id'],
+                    'introduce' => $params['introduce'],
+                    'hobby_1' => $params['hobby_1'],
+                    'hobby_2' => $params['hobby_2'],
+                    'hobby_3' => $params['hobby_3'],
+                ]);
+        }
+        return;
+    }
+
+    public function scopeOtherGenderOfLoginUser($query)
+    {
+        if (auth()->user()->gender === 0){
+            return $query->where('gender', '1');
+        }else{
+            return $query->where('gender', 0);
+        }
+    }
 }

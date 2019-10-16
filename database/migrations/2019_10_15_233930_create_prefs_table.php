@@ -16,8 +16,8 @@ class CreatePrefsTable extends Migration
         Schema::create('prefs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('slug');
-            $table->unsignedBigInteger('region_id');
+            $table->string('slug')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
         });
     }
 

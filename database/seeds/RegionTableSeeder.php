@@ -55,6 +55,12 @@ class RegionTableSeeder extends Seeder
                     'name' => '九州・沖縄',
                     'slug' => 'kyushu',
                 ),
+            7 =>
+                array(
+                    'id' => 8,
+                    'name' => '地域で絞り込む',
+                    'slug' => null,
+                ),
         ));
     }
 }

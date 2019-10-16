@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'account_name' => $faker->name,
         'gender' => rand(0,1),
-        'age' => rand(18, 50),
+        'age' => config('const.ages')[rand(1,8)],
         'pref_id' => rand(1,47),
         'image' => 'berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg',
         'introduce' => $faker->paragraph(rand(2,5)),
