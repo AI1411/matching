@@ -78,7 +78,9 @@
                                                       style="color: red"></i>{{ $user->favorites_count }}<i
                                     class="far fa-thumbs-up mr-2 ml-2" style="color: pink"></i>{{ $user->likes_count }}
                             </p>
-                            <h2 class="text-center">{{ $user->account_name }}</h2>
+                            <h2 class="text-center">{{ $user->account_name }} @if(auth()->user()->isFollowing($user))
+                                    <i class="fas fa-star" style="color: yellow"></i>
+                                @endif</h2>
                             <p class="text-center">{{ config('const.ages')[$user->age] }}</p>
                             <p class="text-center">{{ $user->pref->region->name }}</p>
                             <p class="text-center">{{ $user->pref->name }}</p>

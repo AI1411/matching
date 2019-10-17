@@ -11,23 +11,42 @@
                             {{ $user->account_name }}さんのプロフィール
                             @if($login_user->id === $user->id)
                                 <a href="{{ route('users.edit', $user->id) }}">
-                                    <button class="ml-auto btn btn-primary btn-sm float-right">プロフィールを編集する</button>
+                                    <button class="ml-auto btn btn-primary float-right">プロフィールを編集する</button>
                                 </a>
                             @endif
                         </div>
+                        @if(!$login_user->isFollowing($user))
+                            <form action="">
+                                <button type="submit" name="follow" value="follow" class="btn btn-dark mt-2 ml-2">フォローしていません</button>
+                            </form>
+                        @elseif($login_user->isFollowing($user))
+                            <form action="">
+                                <button type="submit" name="follow" value="unfollow" class="btn btn-success mt-2 ml-2">フォローしています</button>
+                            </form>
+                        @endif
+                        @if(!$login_user->hasLiked($user))
+                            <form action="" class="ml-2 mt-2">
+                                <button type="submit" name="like" value="like"><i class="fas fa-thumbs-up"></i></button>
+                                {{ $user->likes_count }}
+                            </form>
+                        @elseif($login_user->hasLiked($user))
+                            <form action="" class="ml-2 mt-2">
+                                <button type="submit" name="like" value="unlike"><i class="fas fa-thumbs-up" style="color: #227dc7"></i></button>
+                                {{ $user->likes_count }}
+                            </form>
+                        @endif
+                        @if(!$login_user->hasFavorited($user))
+                            <form action="" class="ml-2 mt-2">
+                                <button type="submit" name="favorite" value="favorite"><i class="fas fa-heart"></i></button>
+                                {{ $user->favorites_count }}
+                            </form>
+                        @elseif($login_user->hasFavorited($user))
+                            <form action="" class="ml-2 mt-2">
+                                <button type="submit" name="favorite" value="unfavorite"><i class="fas fa-heart" style="color: red"></i></button>
+                                {{ $user->favorites_count }}
+                            </form>
+                        @endif
                         <div class="card-body">
-                            @if(!$login_user->isFollowing($user))
-                                <form action="" method="get">
-                                    <button type="submit" name="follow" value="1"><i class="fas fa-heart"></i></button>
-                                    {{ $user->favorites_count }}
-                                </form>
-                            @else
-                                <form action="" method="get">
-                                    <button type="submit" name="follow" value="0"><i class="fas fa-heart" style="color: red"></i></button>
-                                    {{ $user->favorites_count }}
-                                </form>
-                            @endif
-                            <a href=""><i class="far fa-thumbs-up ml-2"></i></a>{{ $user->likes_count }}
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item text-center">
                                     <img src="/storage/profile_image/{{ $user->image }}" alt="" height="100%"

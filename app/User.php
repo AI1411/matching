@@ -133,14 +133,40 @@ class User extends Authenticatable
     public function followUser(User $user)
     {
         $login_user = auth()->user();
-        if (Request::input('follow') == 1){
+
+        if (Request::input('follow') == 'follow'){
             $login_user->follow($user);
-            $user->increment('favorites_count');
-            session()->flash('success', $user->account_name.'さんをフォローしました');
-        }else{
+        }
+        if (Request::input('follow') == 'unfollow'){
             $login_user->unfollow($user);
+        }
+    }
+
+    public function likeUser(User $user)
+    {
+        $login_user = auth()->user();
+
+        if (Request::input('like') == 'like'){
+            $login_user->like($user);
+            $user->increment('likes_count');
+        }
+        if (Request::input('like') == 'unlike'){
+            $login_user->unlike($user);
+            $user->decrement('likes_count');
+        }
+    }
+
+    public function favoriteUser(User $user)
+    {
+        $login_user = auth()->user();
+
+        if (Request::input('favorite') == 'favorite'){
+            $login_user->favorite($user);
+            $user->increment('favorites_count');
+        }
+        if (Request::input('favorite') == 'unfavorite'){
+            $login_user->unfavorite($user);
             $user->decrement('favorites_count');
-            session()->flash('danger', $user->account_name.'さんのフォローを外しました');
         }
     }
 }

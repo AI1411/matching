@@ -35,12 +35,15 @@ class UsersController extends Controller
         ));
     }
 
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
         $login_user = auth()->user();
 
         $login_user->followUser($user);
-        if ($login_user->points === 0){
+        $login_user->likeUser($user);
+        $login_user->favoriteUser($user);
+
+        if ($login_user->points == 0){
             session()->flash('danger', 'ポイントがありません');
             return redirect()->route('users.index');
         }
