@@ -30,3 +30,26 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $("#submit").click(function () {
+        const url = "/chats/create";
+        $.ajax({
+            url: url,
+            data: {
+                text: $("#text").val()
+            },
+            method: "POST"
+        });
+        return false;
+    });
+    window.Echo.channel('matching')
+        .listen('ChatEvent', (e) => {
+            $("#board").append('<li>' + e.post.text + '</li>');
+        });
+});
