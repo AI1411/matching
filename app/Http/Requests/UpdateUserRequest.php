@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
             'introduce' => 'max:255',
             'pref_id' => 'required',
             'gender' => 'required',
-            'hobby' => 'required',
+            'hobby' => 'required|max:3',
             'image' => 'image'
         ];
     }
