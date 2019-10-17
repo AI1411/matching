@@ -18,6 +18,7 @@ class UsersController extends Controller
             ->searchOfPref()
             ->searchOfAge()
             ->sortByLoginAtOrLatest()
+            ->searchAccountName()
 //            ->searchOfRegion()
             ->simplePaginate(99);
         $regions = Region::all();
@@ -26,6 +27,7 @@ class UsersController extends Controller
             ->searchOfPref()
             ->searchOfAge()
             ->sortByLoginAtOrLatest()
+            ->searchAccountName()
 //            ->searchOfRegion()
             ->get();
         return view('users.index', compact('users',

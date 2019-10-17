@@ -130,6 +130,16 @@ class User extends Authenticatable
         return $query;
     }
 
+    public function scopeSearchAccountName($query)
+    {
+        $searchKeyword = Request::input('searchAccountName');
+
+        if ($searchKeyword){
+            return $query->where('account_name', 'LIKE', "%{$searchKeyword}%");
+        }
+        return $query;
+    }
+
     public function followUser(User $user)
     {
         $login_user = auth()->user();
