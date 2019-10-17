@@ -22,7 +22,7 @@
                     {{ $totalUsers->count() }}人のユーザーがいます
                 </p>
                 <div class="row justify-content-center">
-                   @include('components.severalScope')
+                    @include('components.severalScope')
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -40,9 +40,13 @@
                                                       style="color: red"></i>{{ $user->favorites_count }}<i
                                     class="far fa-thumbs-up mr-2 ml-2" style="color: pink"></i>{{ $user->likes_count }}
                             </p>
-                            <h2 class="text-center">{{ $user->account_name }} @if(auth()->user()->isFollowing($user))
+                            <h2 class="text-center">{{ $user->account_name }}
+                                @if(auth()->user()->areFollowingEachOther($user))
+                                    <i class="fas fa-grin-hearts" style="color: deeppink"></i>
+                                @elseif(auth()->user()->isFollowing($user))
                                     <i class="fas fa-star" style="color: yellow"></i>
-                                @endif</h2>
+                                @endif
+                            </h2>
                             <p class="text-center">{{ config('const.ages')[$user->age] }}</p>
                             <p class="text-center">{{ $user->pref->region->name }}</p>
                             <p class="text-center">{{ $user->pref->name }}</p>
