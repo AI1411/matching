@@ -18,11 +18,11 @@ class ChatEvent implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return ['chat'];
+        return ['matching'];
     }
 
     public function broadcastAs()
     {
-        return 'chat';
+        return 'matching';
     }
 }

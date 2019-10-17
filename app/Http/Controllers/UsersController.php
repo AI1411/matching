@@ -52,7 +52,9 @@ class UsersController extends Controller
             return redirect()->route('users.index');
         }
         if ($login_user->points > 0) {
-            $login_user->decrement('points');
+            if ($login_user->gender == 0){
+                $login_user->decrement('points');
+            }
         }
         return view('users.show', compact('user', 'login_user', 'doFollow'));
     }
