@@ -20,12 +20,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//users
-Route::get('/users', 'UsersController@index')->name('users.index');
-Route::get('/users/{user}', 'UsersController@show')->name('users.show');
-Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
-Route::put('/users/{user}', 'UsersController@update')->name('users.update');
-Route::post('/users/follow', 'UsersController@follow')->name('follow');
+Route::group(['middleware' => ['auth']], function (){
+    Route::get('/users', 'UsersController@index')->name('users.index');
+    Route::get('/users/{user}', 'UsersController@show')->name('users.show');
+    Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+    Route::put('/users/{user}', 'UsersController@update')->name('users.update');
+    Route::post('/users/follow', 'UsersController@follow')->name('follow');
 
-Route::get("chats", 'ChatController@index')->name('chats.index');
-Route::post("chats/create", 'ChatController@create')->name('chats.create');
+    Route::get("chats", 'ChatController@index')->name('chats.index');
+    Route::post("chats/create", 'ChatController@create')->name('chats.create');
+});
+//users

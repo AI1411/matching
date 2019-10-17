@@ -92,7 +92,7 @@ class User extends Authenticatable
 
     public function scopeOtherGenderOfLoginUser($query)
     {
-        if (auth()->user()->gender === 0) {
+        if (auth()->user()->gender == 0) {
             return $query->where('gender', 1);
         } else {
             return $query->where('gender', 0);
@@ -136,6 +136,16 @@ class User extends Authenticatable
 
         if ($searchKeyword){
             return $query->where('account_name', 'LIKE', "%{$searchKeyword}%");
+        }
+        return $query;
+    }
+
+    public function scopeSortByLikesOrFavoriteCount($query)
+    {
+        if (Request::input('sortByLikesOrFavorite') == 'sortByLikes'){
+            return $query->orderBy('likes_count', 'desc');
+        }elseif (Request::input('sortByLikesOrFavorite') == 'sortByFavorites'){
+            return $query->orderBy('favorites_count', 'desc');
         }
         return $query;
     }
