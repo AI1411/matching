@@ -24,7 +24,10 @@ $factory->define(User::class, function (Faker $faker) {
         'gender' => rand(0,1),
         'age' => rand(1,8),
         'pref_id' => rand(1,47),
-        'image' => 'berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg',
+        'image' => $faker->randomElement(
+            ['1.jpg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg', '8.jpeg','9.jpeg', '10.jpeg', '12.jpeg',
+            'm1.jpeg','m2.jpeg','m3.jpeg','m4.jpeg','m5.jpeg','m6.jpeg','m7.jpeg','m8.jpeg','m9.jpeg','m10.jpeg','m11.jpeg'
+            ]),
         'introduce' => $faker->paragraph(rand(2,5)),
         'hobby_1' => rand(1,10),
         'hobby_2' => rand(1,10),
