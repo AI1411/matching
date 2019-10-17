@@ -45,6 +45,8 @@
                                     <i class="fas fa-grin-hearts" style="color: deeppink"></i>
                                 @elseif(auth()->user()->isFollowing($user))
                                     <i class="fas fa-star" style="color: yellow"></i>
+                                @elseif($user->isFollowing(auth()->user()))
+                                    <i class="fas fa-hand-holding-heart" style="color: #a11dff"></i>
                                 @endif
                             </h2>
                             <p class="text-center">{{ config('const.ages')[$user->age] }}</p>
