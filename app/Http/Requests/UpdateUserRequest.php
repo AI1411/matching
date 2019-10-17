@@ -27,6 +27,9 @@ class UpdateUserRequest extends FormRequest
             'account_name' => 'required|max:10',
             'age' => 'required|integer',
             'introduce' => 'max:255',
+            'pref_id' => 'required',
+            'gender' => 'required',
+            'hobby' => 'required',
             'image' => 'image'
         ];
     }

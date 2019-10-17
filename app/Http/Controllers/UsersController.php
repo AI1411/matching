@@ -7,6 +7,8 @@ use App\Pref;
 use App\Region;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Console\Input\Input;
 
 class UsersController extends Controller
 {
@@ -36,6 +38,17 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $login_user = auth()->user();
+
+        if (request('follow') == 1){
+            $login_user->follow($user);
+            $user->increment('favorites_count');
+            session()->flash('success', $user->account_name .'さんをフォローしました');
+        }elseif (request('follow') == 0){
+            $login_user->unfollow($user);
+            $user->decrement('favorites_count');
+            session()->flash('danger', $user->account_name .'さんのフォローを外しました');
+        }
+
         if ($login_user->points === 0){
             session()->flash('danger', 'ポイントがありません');
             return redirect()->route('users.index');
@@ -43,7 +56,7 @@ class UsersController extends Controller
         if ($login_user->points > 0) {
             $login_user->decrement('points');
         }
-        return view('users.show', compact('user', 'login_user'));
+        return view('users.show', compact('user', 'login_user', 'doFollow'));
     }
 
     public function edit(User $user)

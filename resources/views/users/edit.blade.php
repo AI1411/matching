@@ -26,7 +26,7 @@
                                     <label for="age">年齢: </label>
                                     <select name="age" id="">
                                         @foreach(config('const.ages') as $key => $age)
-                                            <option value="{{ $key }}"
+                                            <option value="{{ old($key,2) }}"
                                                     name="age">{{ config('const.ages')[$key]}}</option>
                                         @endforeach
                                     </select>

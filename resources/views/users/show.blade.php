@@ -16,10 +16,19 @@
                             @endif
                         </div>
                         <div class="card-body">
-                            <a href=""><i class="fas fa-heart"></i></a>{{ $user->favorites_count }}
-                            <a href=""><i class="far fa-thumbs-up ml-2"></i></a>{{ $user->likes_count }}　
+                            @if(!$login_user->isFollowing($user))
+                                <form action="" method="get">
+                                    <button type="submit" name="follow" value="1"><i class="fas fa-heart"></i></button>
+                                    {{ $user->favorites_count }}
+                                </form>
+                            @else
+                                <form action="" method="get">
+                                    <button type="submit" name="follow" value="0"><i class="fas fa-heart"></i></button>
+                                    {{ $user->favorites_count }}
+                                </form>
+                            @endif
+                            <a href=""><i class="far fa-thumbs-up ml-2"></i></a>{{ $user->likes_count }}
                             <ul class="list-group list-group-flush">
-
                                 <li class="list-group-item text-center">
                                     <img src="/storage/profile_image/{{ $user->image }}" alt="" height="100%"
                                          width="70%">
@@ -30,9 +39,12 @@
                                 <li class="list-group-item">地域：　{{ $user->pref->region->name }}</li>
                                 <li class="list-group-item">都道府県：　{{ $user->pref->name }}</li>
                                 <li class="list-group-item">自己紹介：　{{ $user->introduce }}</li>
-                                <li class="list-group-item">趣味１：　{{ config('const.hobby')[$user->hobby_1] }}</li>
-                                <li class="list-group-item">趣味２：　{{ config('const.hobby')[$user->hobby_2] }}</li>
-                                <li class="list-group-item">趣味３：　{{ config('const.hobby')[$user->hobby_3] }}</li>
+                                <li class="list-group-item">
+                                    趣味１：　{{ config('const.hobby')[$user->hobby_1] }}</li>
+                                <li class="list-group-item">
+                                    趣味２：　{{ config('const.hobby')[$user->hobby_2] }}</li>
+                                <li class="list-group-item">
+                                    趣味３：　{{ config('const.hobby')[$user->hobby_3] }}</li>
                                 <a href="{{ route('users.index') }}" class="btn btn-primary">一覧へ戻る</a>
                             </ul>
                         </div>

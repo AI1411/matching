@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => '名前',
+        'account_name' => 'アカウント名',
+        'image' => '画像',
+        'gender' => '性別',
+        'age' => '年齢',
+        'introduce' => '自己紹介',
+        'hobby' => '趣味'
+    ],
 
 ];

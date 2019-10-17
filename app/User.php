@@ -2,6 +2,16 @@
 
 namespace App;
 
+use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanLike;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
+use Overtrue\LaravelFollow\Traits\CanSubscribe;
+use Overtrue\LaravelFollow\Traits\CanVote;
+use Overtrue\LaravelFollow\Traits\CanBookmark;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use Overtrue\LaravelFollow\Traits\CanBeFavorited;
+use Overtrue\LaravelFollow\Traits\CanBeVoted;
+use Overtrue\LaravelFollow\Traits\CanBeBookmarked;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,6 +22,8 @@ use function Composer\Autoload\includeFile;
 class User extends Authenticatable
 {
     use Notifiable;
+    use CanFollow, CanBookmark, CanLike, CanFavorite, CanSubscribe, CanVote;
+    use CanBeLiked, CanBeFavorited, CanBeVoted, CanBeBookmarked;
 
     /**
      * The attributes that are mass assignable.
@@ -116,5 +128,14 @@ class User extends Authenticatable
             return $query->latest();
         }
         return $query;
+    }
+
+    public function followUser(User $user)
+    {
+        $login_user = auth()->user();
+        if (Request::input('follow')){
+            $login_user->follow($user);
+            $user->increment('favorites_count');
+        }
     }
 }
