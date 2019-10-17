@@ -133,9 +133,14 @@ class User extends Authenticatable
     public function followUser(User $user)
     {
         $login_user = auth()->user();
-        if (Request::input('follow')){
+        if (Request::input('follow') == 1){
             $login_user->follow($user);
             $user->increment('favorites_count');
+            session()->flash('success', $user->account_name.'さんをフォローしました');
+        }else{
+            $login_user->unfollow($user);
+            $user->decrement('favorites_count');
+            session()->flash('danger', $user->account_name.'さんのフォローを外しました');
         }
     }
 }

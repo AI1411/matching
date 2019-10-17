@@ -39,16 +39,7 @@ class UsersController extends Controller
     {
         $login_user = auth()->user();
 
-        if (request('follow') == 1){
-            $login_user->follow($user);
-            $user->increment('favorites_count');
-            session()->flash('success', $user->account_name .'さんをフォローしました');
-        }elseif (request('follow') == 0){
-            $login_user->unfollow($user);
-            $user->decrement('favorites_count');
-            session()->flash('danger', $user->account_name .'さんのフォローを外しました');
-        }
-
+        $login_user->followUser($user);
         if ($login_user->points === 0){
             session()->flash('danger', 'ポイントがありません');
             return redirect()->route('users.index');

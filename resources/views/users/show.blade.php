@@ -23,7 +23,7 @@
                                 </form>
                             @else
                                 <form action="" method="get">
-                                    <button type="submit" name="follow" value="0"><i class="fas fa-heart"></i></button>
+                                    <button type="submit" name="follow" value="0"><i class="fas fa-heart" style="color: red"></i></button>
                                     {{ $user->favorites_count }}
                                 </form>
                             @endif
