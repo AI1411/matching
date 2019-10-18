@@ -20,7 +20,7 @@ class SearchController extends Controller
             $users = $users->where($key, $value);
         }
 
-        $users = $users->simplePaginate(100);
+        $users = $users->paginate(100);
 //        if (isset($requestHobby)) {
 //            $users = $users->where('hobby_1', $requestHobby);
 //        }
