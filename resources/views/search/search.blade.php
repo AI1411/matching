@@ -10,30 +10,20 @@
                         <form action="" method="get">
                             <fieldset class="mt-1">
                                 <h5 class="font-weight-bold" style="background-color: whitesmoke;">
-                                    年代<small>（複数選択可）</small></h5>
+                                    年代</h5>
                                 @foreach(config('const.ages') as $key => $age)
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="age" value="{{ $key }}">
+                                        <input class="form-check-input" type="radio" name="age" value="{{ $key }}">
                                         <label class="form-check-label pl-0 pr-3" for="">{{ $age }}</label>
                                     </div>
                                 @endforeach
                             </fieldset>
-                            {{--                            <fieldset class="mt-1">--}}
-                            {{--                                <h5 class="font-weight-bold" style="background-color: whitesmoke;">--}}
-                            {{--                                    地域<small>（複数選択可）</small></h5>--}}
-                            {{--                                @foreach($regions as $key => $region)--}}
-                            {{--                                    <div class="form-check form-check-inline">--}}
-                            {{--                                        <input class="form-check-input" type="checkbox" name="region[]" value="{{ $key }}">--}}
-                            {{--                                        <label class="form-check-label pl-0 pr-3" for="">{{ $region->name }}</label>--}}
-                            {{--                                    </div>--}}
-                            {{--                                @endforeach--}}
-                            {{--                            </fieldset>--}}
                             <fieldset class="mt-1">
                                 <h5 class="font-weight-bold" style="background-color: whitesmoke;">
-                                    都道府県<small>（複数選択可）</small></h5>
+                                    都道府県</h5>
                                 @foreach(config('const.pref') as $key => $pref)
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" name="pref_id"
+                                        <input class="form-check-input" type="radio" name="pref_id"
                                                value="{{ $key }}">
                                         <label class="form-check-label pl-0 pr-3" for="">{{ $pref }}</label>
                                     </div>
