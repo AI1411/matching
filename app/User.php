@@ -150,6 +150,17 @@ class User extends Authenticatable
         return $query;
     }
 
+    public function scopeMatching($query, $search_target, $search_items)
+    {
+        $matching_data = $query->where(function ($query) use ($search_target, $search_items) {
+            $query->where($search_target, $search_items[0]);
+            for ($i = 1; $i < count($search_items); $i++) {
+                $query->orWhere($search_target, $search_items[$i]);
+            }
+        });
+        return $matching_data;
+    }
+
     public function followUser(User $user)
     {
         $login_user = auth()->user();

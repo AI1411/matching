@@ -16,8 +16,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('chats.index') }}">チャット</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('search') }}">詳細検索</a>
+            </li>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchAccountName">
+                <input class="form-control mr-sm-2" type="search" placeholder="アカウント名検索" aria-label="Search"
+                       name="searchAccountName">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </ul>
@@ -44,7 +48,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('ログアウト') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

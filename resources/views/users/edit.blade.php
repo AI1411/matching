@@ -26,7 +26,7 @@
                                     <label for="age">年齢: </label>
                                     <select name="age" id="">
                                         @foreach(config('const.ages') as $key => $age)
-                                            <option value="{{ old($key,2) }}"
+                                            <option value="{{ $key }}"
                                                     name="age">{{ config('const.ages')[$key]}}</option>
                                         @endforeach
                                     </select>
@@ -57,17 +57,17 @@
                                     <textarea name="introduce" id="" class="form-control"
                                               rows="5">{{ $user->introduce }}</textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">趣味: </label>
-                                    <ul>
-                                        @foreach(config('const.hobby') as $key => $hobby)
-                                            <input class="form-check-input" type="checkbox" name="hobby[]" value="{{ $key }}" id="defaultCheck1">
-                                            <li class="form-check-label">
-                                                {{ $hobby }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                <fieldset class="mt-1">
+                                    <h5 class="font-weight-bold" style="background-color: whitesmoke;">
+                                        趣味<small>（３つまで選択可）</small>
+                                    </h5>
+                                    @foreach(config('const.hobby') as $key => $hobby)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" name="hobby[]" value="{{ $key }}">
+                                            <label class="form-check-label pl-0 pr-3" for="">{{ $hobby }}</label>
+                                        </div>
+                                    @endforeach
+                                </fieldset>
                                 <button class="btn btn-primary text-center" type="submit">更新</button>
                             </div>
                         </form>
