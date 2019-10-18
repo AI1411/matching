@@ -200,4 +200,9 @@ class User extends Authenticatable
             $user->decrement('favorites_count');
         }
     }
+
+    public function setRegionIdAttribute(User $user)
+    {
+        $this->attributes['region_id'] = $user->pref->region->id;
+    }
 }

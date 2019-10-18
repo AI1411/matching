@@ -9,17 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         $authUser = Auth::user();
         $regions = Region::all();
         $usersAllCount = User::select('id')->where('gender', '!=', $authUser->gender)->count();
-        $users = User::where('gender', '!=', $authUser->gender)->get();
+        $users = User::where('gender', '!=', $authUser->gender);
 
         foreach ($request->only(['age', 'pref_id']) as $key => $value) {
             $users = $users->where($key, $value);
         }
 
+        $users = $users->simplePaginate(100);
 //        if (isset($requestHobby)) {
 //            $users = $users->where('hobby_1', $requestHobby);
 //        }

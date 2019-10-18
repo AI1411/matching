@@ -18,6 +18,17 @@
                                     </div>
                                 @endforeach
                             </fieldset>
+{{--                            <fieldset class="mt-1">--}}
+{{--                                <h5 class="font-weight-bold" style="background-color: whitesmoke;">--}}
+{{--                                    地域</h5>--}}
+{{--                                @foreach($regions as $key => $region)--}}
+{{--                                    <div class="form-check form-check-inline">--}}
+{{--                                        <input class="form-check-input" type="radio" name="region_id"--}}
+{{--                                               value="{{ $key }}">--}}
+{{--                                        <label class="form-check-label pl-0 pr-3" for="">{{ $region->name }}</label>--}}
+{{--                                    </div>--}}
+{{--                                @endforeach--}}
+{{--                            </fieldset>--}}
                             <fieldset class="mt-1">
                                 <h5 class="font-weight-bold" style="background-color: whitesmoke;">
                                     都道府県</h5>
@@ -51,6 +62,11 @@
         <h5 class="mt-2 mb-2">{{ $usersAllCount }}件中{{ $users->count() }}件がヒットしました。</h5>
         検索条件: @if(isset($request['pref_id'])){{ config('const.pref')[$request['pref_id']] }}@endif :
                  @if(isset($request['age'])){{ config('const.ages')[$request['age']] }}@endif
+        <div class="container">
+            <div class="row justify-content-center">
+                <p class="text-center">{{ $users->links() }}</p>
+            </div>
+        </div>
         <div class="row justify-content-center">
             @foreach($users as $user)
                 <div class="col-lg-4">
@@ -82,6 +98,11 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <p class="text-center">{{ $users->links() }}</p>
         </div>
     </div>
 @endsection

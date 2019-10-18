@@ -60,7 +60,7 @@
     </div>
     <div class="container">
         <div class="row justify-content-center">
-            <p class="text-center">{{ $users->links() }}</p>
+            <p class="text-center">{{ $users->appends(request()->input())->links() }}</p>
         </div>
     </div>
 @endsection
